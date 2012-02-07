@@ -53,8 +53,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>..\_Deployment Rep\Debug\Pluto.Tools.xml</DocumentationFile>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>BasicCorrectnessRules.ruleset</CodeAnalysisRuleSet>
     <NoWarn>1591,1592,1572,1573,1711,1712</NoWarn>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -85,6 +86,7 @@
   <ItemGroup>
     <Compile Include="Clone.cs" />
     <Compile Include="Code.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Security\Cryptography.cs" />
     <Compile Include="Linq\Linq.cs" />
     <Compile Include="Network\Web.cs" />

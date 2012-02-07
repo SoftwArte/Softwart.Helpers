@@ -23,16 +23,16 @@ namespace Pluto.Tools
 		/// </summary>
 		/// <param name="value">Fragmento Xml.</param>
 		/// <param name="schemaFullPathName">Ruta absoluta completa del esquema.</param>
-		public static bool SchemaValidator( XElement value, string schemaFullPathName )
+		public static bool SchemaValidator(XElement value, string schemaFullPathName)
 		{
 			//Carga el esquema de validación.
-			XmlSchemaSet SchemaSet = new XmlSchemaSet( );
-			SchemaSet.Add( null, schemaFullPathName );
-			SchemaSet.Compile( );
+			XmlSchemaSet SchemaSet = new XmlSchemaSet();
+			SchemaSet.Add(null, schemaFullPathName);
+			SchemaSet.Compile();
 			//Incrusta el fragmento en un documento para validar.
-			XDocument TmpDoc = new XDocument( );
-			TmpDoc.Add( value );
-			TmpDoc.Validate( SchemaSet, null );
+			XDocument TmpDoc = new XDocument();
+			TmpDoc.Add(value);
+			TmpDoc.Validate(SchemaSet, null);
 			return true;
 		}
 		/// <summary>
@@ -41,16 +41,16 @@ namespace Pluto.Tools
 		/// <param name="value"></param>
 		/// <param name="schema"></param>
 		/// <returns></returns>
-		public static bool SchemaValidator( XElement value, XmlSchema schema )
+		public static bool SchemaValidator(XElement value, XmlSchema schema)
 		{
 			//Carga el esquema de validación.
-			XmlSchemaSet SchemaSet = new XmlSchemaSet( );
-			SchemaSet.Add( schema );
-			SchemaSet.Compile( );
+			XmlSchemaSet SchemaSet = new XmlSchemaSet();
+			SchemaSet.Add(schema);
+			SchemaSet.Compile();
 			//Incrusta el fragmento en un documento para validar.
-			XDocument TmpDoc = new XDocument( );
-			TmpDoc.Add( value );
-			TmpDoc.Validate( SchemaSet, null );
+			XDocument TmpDoc = new XDocument();
+			TmpDoc.Add(value);
+			TmpDoc.Validate(SchemaSet, null);
 			return true;
 		}
 		/// <summary>
@@ -59,29 +59,29 @@ namespace Pluto.Tools
 		/// <param name="value"></param>
 		/// <param name="schemaDefinition"></param>
 		/// <returns></returns>
-		public static bool SchemaValidator( string value, string schemaDefinition )
+		public static bool SchemaValidator(string value, string schemaDefinition)
 		{
 			//Prepare schema set to validate against.
-			XmlSchemaSet SchemaSet = new XmlSchemaSet( );
+			XmlSchemaSet SchemaSet = new XmlSchemaSet();
 			try
 			{
-				using( var str = new StringReader( schemaDefinition ) )
+				using(var str = new StringReader(schemaDefinition))
 				{
-					using( var sch = XmlReader.Create( str, new XmlReaderSettings { IgnoreWhitespace = true } ) )
+					using(var sch = XmlReader.Create(str, new XmlReaderSettings { IgnoreWhitespace = true }))
 					{
-						var schema = XmlSchema.Read( sch, null );
-						SchemaSet.Add( schema );
-						SchemaSet.Compile( );
+						var schema = XmlSchema.Read(sch, null);
+						SchemaSet.Add(schema);
+						SchemaSet.Compile();
 						//Incrusta el fragmento en un documento para validar.
-						XDocument TmpDoc = new XDocument( );
-						TmpDoc.Add( value );
-						TmpDoc.Validate( SchemaSet, null );
+						XDocument TmpDoc = new XDocument();
+						TmpDoc.Add(value);
+						TmpDoc.Validate(SchemaSet, null);
 					}
 
 				}
 				return true;
 			}
-			catch( Exception ex )
+			catch
 			{
 				throw;
 			}
