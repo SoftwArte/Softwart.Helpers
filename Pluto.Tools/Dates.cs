@@ -20,6 +20,8 @@ namespace Pluto.Tools
 		{
 			return (lastDate - firstDate).Days;
 		}
+
+
 	}
 
 }
