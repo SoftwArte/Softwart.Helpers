@@ -21,6 +21,10 @@ namespace Pluto.Tools
 			return (lastDate - firstDate).Days;
 		}
 
+		public static string GetDateTimeKey(DateTime value)
+		{
+			return value.Ticks.ToString();
+		}
 
 	}
 
