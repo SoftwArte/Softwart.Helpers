@@ -85,7 +85,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clone.cs" />
-    <Compile Include="Code.cs" />
     <Compile Include="Dates.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Security\Cryptography.cs" />
