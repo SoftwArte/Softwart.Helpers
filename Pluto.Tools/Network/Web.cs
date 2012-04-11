@@ -37,12 +37,20 @@ namespace Pluto.Tools
 		/// <summary>
 		/// Download and return a binary representation of a web resource as byte array.
 		/// </summary>
+		/// <remarks>if cant download by exception, return empty byte[] array. </remarks>
 		/// <returns></returns>
 		public static byte[] GetWebResourceBinary(string url)
 		{
 			using(var client = new WebClient())
 			{
-				return client.DownloadData(url);
+				try
+				{
+					return client.DownloadData(url);
+				}
+				catch(Exception ex)
+				{
+					return new byte[]{};
+				}
 			}
 
 

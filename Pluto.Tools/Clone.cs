@@ -2,7 +2,7 @@
  *	Clone functions class			
  *	Programmed by: Rafael Hernández										
  * **********************************************/
-
+ 
 using System;
 using System.Collections.Generic;
 using System.Linq;
