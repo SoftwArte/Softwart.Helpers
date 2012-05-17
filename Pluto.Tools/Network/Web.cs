@@ -12,13 +12,18 @@ namespace Pluto.Tools
 {
 	public class WebTools
 	{
+		/// <summary>
+		///	Download a web page as string, better support for encodings. 
+		/// </summary>
+		/// <param name="url"></param>
+		/// <returns></returns>
 		public static string GetWebPage(string url)
 		{
 			WebClient request = new WebClient();
 			return request.DownloadString(url);
 		}
 		/// <summary>
-		/// 
+		/// Download a web page as stream, is neccesary read the strema to return the content as a string.
 		/// </summary>
 		/// <param name="url"></param>
 		/// <returns></returns>
