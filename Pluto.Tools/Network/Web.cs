@@ -12,6 +12,11 @@ namespace Pluto.Tools
 {
 	public class WebTools
 	{
+		public static string GetWebPage(string url)
+		{
+			WebClient request = new WebClient();
+			return request.DownloadString(url);
+		}
 		/// <summary>
 		/// 
 		/// </summary>
@@ -49,7 +54,7 @@ namespace Pluto.Tools
 				}
 				catch(Exception ex)
 				{
-					return new byte[]{};
+					return new byte[] { };
 				}
 			}
 
