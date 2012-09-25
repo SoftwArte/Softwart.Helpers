@@ -12,14 +12,10 @@
     <AssemblyName>Pluto.Tools</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SccProjectName>
-    </SccProjectName>
-    <SccLocalPath>
-    </SccLocalPath>
-    <SccAuxPath>
-    </SccAuxPath>
-    <SccProvider>
-    </SccProvider>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
     <SignAssembly>false</SignAssembly>
     <IsWebBootstrapper>true</IsWebBootstrapper>
     <AssemblyOriginatorKeyFile>
@@ -51,7 +47,7 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>2</WarningLevel>
     <DocumentationFile>bin\Debug\Pluto.Tools.XML</DocumentationFile>
     <CodeAnalysisRuleSet>BasicCorrectnessRules.ruleset</CodeAnalysisRuleSet>
     <NoWarn>1591,1592,1572,1573,1711,1712</NoWarn>
@@ -63,7 +59,7 @@
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>2</WarningLevel>
     <DebugSymbols>false</DebugSymbols>
     <DocumentationFile>
     </DocumentationFile>
@@ -93,6 +89,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reflection\Reflection.cs" />
     <Compile Include="RegularExpressions\RegExp.cs" />
+    <Compile Include="Text\Compression.cs" />
     <Compile Include="Xml\Schemas.cs" />
     <Compile Include="Xml\XElement.cs" />
   </ItemGroup>
