@@ -68,6 +68,9 @@
     <NoWarn>1591,1592,1572,1573,1711,1712</NoWarn>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LinqKit">
+      <HintPath>..\Joincatalogs.Platform\packages\LinqKit.1.0\lib\35\LinqKit.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core">
@@ -76,6 +79,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
@@ -83,6 +87,8 @@
     <Compile Include="Clone.cs" />
     <Compile Include="Dates.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Network\Mail.cs" />
+    <Compile Include="Network\WebBrowse.cs" />
     <Compile Include="Security\Cryptography.cs" />
     <Compile Include="Linq\Linq.cs" />
     <Compile Include="Network\Web.cs" />
@@ -125,7 +131,9 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

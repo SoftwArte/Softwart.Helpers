@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Net;
 using System.IO;
 using System.Drawing;
+using System.Threading;
+using System.Windows.Forms;
 using System.Xml.Linq;
 
 
@@ -17,11 +20,23 @@ namespace Pluto.Tools
 		/// </summary>
 		/// <param name="url"></param>
 		/// <returns></returns>
-		public static string GetWebPage(string url)
+		public static string GetWebPage(string url, string httpMethod = "GET", string body = "")
 		{
-			WebClient request = new WebClient();
-			return request.DownloadString(url);
+			WebClient client = new WebClient();
+			//
+			if(httpMethod == "GET")
+			{
+				//Return a page using GET.
+				return client.DownloadString(url);
+			}
+			else
+			{
+				//Return a page using POST.
+				client.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
+				return Encoding.UTF8.GetString(client.UploadData(url, "POST", Encoding.UTF8.GetBytes(body)));
+			}
 		}
+
 		/// <summary>
 		/// Download a web page as stream, is neccesary read the strema to return the content as a string.
 		/// </summary>
