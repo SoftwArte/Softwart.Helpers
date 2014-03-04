@@ -1,23 +1,24 @@
-﻿/*
-*
-*/
+﻿/************************************************
+ *	Mail helper classes			
+ *	Programmed by: Rafael Hernández
+ *	Revision Date: 4/03/2014
+ *	Version: 1.3												
+ * **********************************************/
 
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Net.Mail;
-using System.Xml;
-
-
-namespace Pluto.Tools
+namespace Softwarte.Helpers
 {
-	public class Mail
+	using System;
+	using System.Collections;
+	using System.Collections.Generic;
+	using System.Globalization;
+	using System.IO;
+	using System.Linq;
+	using System.Net.Mail;
+	using System.Xml;
+	public class MailHelper
 	{
 		/// <summary>
-		/// Send a simple mail message to a single mail address.
+		/// Send a simple mail message to a single mail address. Smtp configuration must exist in config file.
 		/// </summary>
 		/// <param name="message"></param>
 		/// <param name="subject"></param>

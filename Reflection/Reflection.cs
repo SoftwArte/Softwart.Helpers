@@ -1,22 +1,26 @@
 ﻿/************************************************
- *	Reflection Helper class			
- *	Programmed by: Rafael Hernández							
- *	Version: 1.3						
+ *	Reflection helper classes			
+ *	Programmed by: Rafael Hernández
+ *	Revision Date: 4/03/2014
+ *	Version: 1.3												
  * **********************************************/
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Reflection;
 
-namespace Pluto.Tools
+namespace Softwarte.Helpers
 {
+	using System;
+	using System.Linq;
+	using System.Linq.Expressions;
+	using System.Reflection;
 	/// <summary>
-	/// Clase con métodos para la invocación dinámica de miembros de clases genericas por reflection.
+	/// Functions to dinamically invocation of members by reflection.
 	/// </summary>
 	public class Reflector
 	{
+        /// <summary>
+        /// Return a closed Func type with parameters
+        /// </summary>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
 		public static Type GenericLinqFuncReflected(params Type[] parameters)
 		{
 			Type FuncOpen = typeof(Func<,>);
@@ -24,7 +28,7 @@ namespace Pluto.Tools
 			return FuncClose;
 		}
 		/// <summary>
-		/// Devuelve el tipo cerrado de un tipo Func con los parametros declarados."/>
+        /// Return a closed Expression type with parameters.
 		/// </summary>
 		/// <param name="parameters"></param>
 		/// <returns></returns>
@@ -37,7 +41,7 @@ namespace Pluto.Tools
 			return ExpClose;
 		}
 		/// <summary>
-		/// Devuelve el Type por su nombre largo incluido el namespace. Busca en el ensamblado predeterminado.
+		/// Return a type by his name, assembly name is needed.
 		/// </summary>
 		/// <param name="typeLongName"></param>
 		/// <returns></returns>
@@ -46,7 +50,7 @@ namespace Pluto.Tools
 			return Assembly.Load(assemblyName).GetType(typeLongName);
 		}
 		/// <summary>
-		/// Devuelve el tipo del argumento generico del tipo declarado un una propiedad de una entidad.
+        /// Return the type of a generic argument of the type of a property of the main type.
 		/// </summary>
 		/// <param name="mainType"></param>
 		/// <param name="propertyTypeName"></param>
@@ -56,14 +60,14 @@ namespace Pluto.Tools
 			return mainType.GetProperty(propertyTypeName).PropertyType.GetGenericArguments()[0];
 		}
 		/// <summary>
-		/// Invoca un método estático miembro del tipo especificado.
+		/// Invoke a static method of a type.
 		/// </summary>
 		/// <param name="type"></param>
 		/// <param name="methodName"></param>
 		/// <param name="parameters"></param>
 		/// <param name="values"></param>
 		/// <returns></returns>
-		public static dynamic InvocadorSimpleEstatico(Type type, string methodName, Type[] parameters = null, Object[] values = null)
+		public static dynamic InvokeStaticSimple(Type type, string methodName, Type[] parameters = null, Object[] values = null)
 		{
 			if(parameters != null)
 			{
@@ -77,7 +81,7 @@ namespace Pluto.Tools
 			}
 		}
 		/// <summary>
-		/// Invoca mediante reflection un método por su nombre. Es necesario indicar el tipo de objeto que posee el método, el tipo de este objeto, los tipos de los parametros y los valores a pasar al método.
+		/// Invoke a non static method of type, instance object is needed.
 		/// </summary>
 		/// <param name="instance"></param>
 		/// <param name="type"></param>
@@ -85,7 +89,7 @@ namespace Pluto.Tools
 		/// <param name="parameters"></param>
 		/// <param name="values"></param>
 		/// <returns></returns>
-		public static dynamic InvocadorSimple(Object instance, Type type, string methodName, Type[] parameters = null, Object[] values = null)
+		public static dynamic InvokeSimple(Object instance, Type type, string methodName, Type[] parameters = null, Object[] values = null)
 		{
 			if(parameters != null)
 			{
@@ -99,26 +103,26 @@ namespace Pluto.Tools
 			}
 		}
 		/// <summary>
-		/// Invoca un metodo de un tipo generico, solo admite un parametro generico.
+		/// Invoke a non static method of a genetic type with only one generic argument.
 		/// </summary>
 		/// <param name="type"></param>
 		/// <param name="genericParameter"></param>
 		/// <param name="methodName"></param>
 		/// <param name="parameters"></param>
 		/// <param name="values"></param>
-		/// <returns>Devuelve un object, pero si internamente era una coleccion implementa IEnumerable.</returns>
-		public static dynamic InvocadorGenerico(Type type, Type genericParameter, string methodName, Type[] parameters, Object[] values)
+		/// <returns>Return an object.</returns>
+        /// <remarks>If the return object is a collection, implements IEnumerable</remarks>
+		public static dynamic InvokeGenericSimple(Type type, Type genericParameter, string methodName, Type[] parameters, Object[] values)
 		{
 			Type OpenType = type;
 			Type CloseType = OpenType.MakeGenericType(genericParameter);
 			//
 			MethodInfo M = CloseType.GetMethod(methodName, parameters);
 			Object Obj = Activator.CreateInstance(CloseType);
-			//Devuelve un object con lo que devuelva e..l método.
 			return M.Invoke(Obj, values);
 		}
 		/// <summary>
-		/// Invoca un metodo generico con múltiples parametros genéricos.
+		/// Invoke a non static method of a generic type with multiple arguments.
 		/// </summary>
 		/// <param name="type"></param>
 		/// <param name="genericParameters"></param>
@@ -126,18 +130,17 @@ namespace Pluto.Tools
 		/// <param name="parameters"></param>
 		/// <param name="values"></param>
 		/// <returns></returns>
-		public static dynamic InvocadorGenericoMultiple(Type type, Type[] genericParameters, string methodName, Type[] parameters, Object[] values)
+		public static dynamic InvokeGeneric(Type type, Type[] genericParameters, string methodName, Type[] parameters, Object[] values)
 		{
 			Type OpenType = type;
 			Type CloseType = OpenType.MakeGenericType(genericParameters);
 			//
 			MethodInfo M = CloseType.GetMethod(methodName, parameters);
 			Object Obj = Activator.CreateInstance(CloseType);
-			//Devuelve un object con lo que devuelva el método.
 			return M.Invoke(Obj, values);
 		}
 		/// <summary>
-		/// Establece el valor de la propiedad de un tipo por reflection, acepta que el tipo de la propiedad sea Nullable generico.
+		/// Set the value of an object property. Accept nullable generic properties.
 		/// </summary>
 		/// <param name="objToChange"></param>
 		/// <param name="propertyName"></param>
@@ -250,6 +253,12 @@ namespace Pluto.Tools
 
 			}
 		}
+        /// <summary>
+        /// Get the value of an object property. Accept nullable and generic properties.
+        /// </summary>
+        /// <param name="instance"></param>
+        /// <param name="propertyName"></param>
+        /// <returns></returns>
 		public static dynamic PropertyInfoGetter(object instance, string propertyName)
 		{
 			Type FieldType = null;

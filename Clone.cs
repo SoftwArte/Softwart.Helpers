@@ -1,37 +1,28 @@
 ﻿/************************************************
- *	Clone functions class			
- *	Programmed by: Rafael Hernández										
+ *	Clone helper		
+ *	Programmed by: Rafael Hernández
+ *	Revision Date: 4/03/2014
+ *	Version: 1.3												
  * **********************************************/
  
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Xml;
-
-namespace Pluto.Tools
+namespace Softwarte.Helpers
 {
-	/// <summary>2 métodos deep-clone, uno binario para ISerializables y otro XML basado en DataContractSerializer para tipos marcados con el
-	/// atributo [DataContractAttribute()]</summary>
-
-	public static class Cloner
+    using System;
+    using System.IO;
+    using System.Runtime.Serialization;
+    using System.Runtime.Serialization.Formatters.Binary;
+    using System.Xml;
+	public static class ClonerHelper
 	{
 		/// <summary> 
-		/// Perform a deep Copy of the object. 
+		/// Perform a deep Copy of the object.  Use a binayformatter with ISerializable objects
 		/// </summary> 
 		/// <typeparam name="T">The type of object being copied.</typeparam> 
 		/// <param name="source">The object instance to copy.</param> 
 		/// <returns>The copied object.</returns> 
 		public static T BinaryClone<T>(T source)
+            where T: class, ISerializable, new()
 		{
-			if(!typeof(T).IsSerializable)
-			{
-				throw new ArgumentException("The type must be serializable.", "source");
-			}
-
 			// Don't serialize a null object, simply return the default for that object 
 			if(object.ReferenceEquals(source, null))
 			{
@@ -47,9 +38,16 @@ namespace Pluto.Tools
 				return (T)formatter.Deserialize(stream);
 			}
 		}
+        /// <summary>
+        /// Perform a deepclone of and object with datagraph. Use DataContractSerializer and the object type must be decorated with DataContractAtrribute.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <returns></returns>
 		public static T DataClone<T>(T source)
 				where T : class, new()
 		{
+            //Checks
 			if(typeof(T).GetCustomAttributes(typeof(DataContractAttribute), false) == null)
 			{
 				throw new ArgumentException("The type must be decorate with DataContractAttribute.", "source");

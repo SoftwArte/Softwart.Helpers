@@ -69,7 +69,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="LinqKit">
-      <HintPath>..\Joincatalogs.Platform\packages\LinqKit.1.0\lib\35\LinqKit.dll</HintPath>
+      <HintPath>packages\LinqKit.1.0\lib\35\LinqKit.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -86,7 +86,6 @@
   <ItemGroup>
     <Compile Include="Clone.cs" />
     <Compile Include="Dates.cs" />
-    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Network\Mail.cs" />
     <Compile Include="Network\WebBrowse.cs" />
     <Compile Include="Security\Cryptography.cs" />

@@ -1,15 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Xml.Linq;
+﻿/************************************************
+ *	Xml helper classes			
+ *	Programmed by: Rafael Hernández
+ *	Revision Date: 4/03/2014
+ *	Version: 1.3												
+ * **********************************************/
 
-namespace Pluto.Tools
+namespace Softwarte.Helpers
 {
-	public class LinqToXml
+    using System;
+    using System.Xml.Linq;
+	public class LinqToXmlHelper
 	{
 		/// <summary>
-		/// Obtiene el valor de un node Xml y devuelve un string con el valor, devolverá una cadena vacio si el nodo es nulo.
+		/// Return a string with the value of node. Return a empty string if node value is null.
 		/// </summary>
 		/// <param name="node"></param>
 		/// <returns></returns>
@@ -18,7 +21,7 @@ namespace Pluto.Tools
 			return node != null ? node.Value : string.Empty;
 		}
 		/// <summary>
-		/// Return string value from attribute if its not null else return default value.
+		/// Return string value from attribute Return default value if attribute value is null.
 		/// </summary>
 		/// <param name="attribute"></param>
 		/// <param name="defaultValue"></param>
@@ -27,19 +30,29 @@ namespace Pluto.Tools
 		{
 			return attribute != null ? attribute.Value : defaultValue;
 		}
-		//
+		/// <summary>
+		/// Retunr a int value from attribute. Return default value passed if attribute value is null.
+		/// </summary>
+		/// <param name="node"></param>
+		/// <param name="defaultValue"></param>
+		/// <returns></returns>
 		public static int GetIntFromAttribute( XAttribute node, int defaultValue )
 		{
 			return node != null ? Convert.ToInt32( node.Value ) : defaultValue;
 		}
-
+        /// <summary>
+        /// Return a long value from attribute. Return a default value if it is null.
+        /// </summary>
+        /// <param name="node"></param>
+        /// <param name="defaultValue"></param>
+        /// <returns></returns>
 		public static long GetLongFromAttribute( XAttribute node, int defaultValue )
 		{
 			return node != null ? Convert.ToInt64( node.Value ) : defaultValue;
 		}
 
 		/// <summary>
-		/// Obtiene el valor booleano de un attributo, si el atributo no existe se devuelve false.
+		/// Return a boolean value from an attribute. Return false if node value is null.
 		/// </summary>
 		/// <param name="node"></param>
 		/// <returns></returns>

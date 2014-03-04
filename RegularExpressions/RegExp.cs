@@ -1,17 +1,19 @@
 ﻿/************************************************
- *	Regular expressions functions class			
- *	Programmed by: Rafael Hernández										
+ *	Regular expression helper classes			
+ *	Programmed by: Rafael Hernández
+ *	Revision Date: 4/03/2014
+ *	Version: 1.3												
  * **********************************************/
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-
-namespace Pluto.Tools
+namespace Softwarte.Helpers
 {
-	public class RgExpression
+
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Text.RegularExpressions;
+	public class RegExpHelper
 	{
 		/// <summary>
 		/// Get the first ocurrence that validate the rule.
@@ -23,7 +25,13 @@ namespace Pluto.Tools
 		{
 			return new Regex( rule ).Match( source ).ToString( );
 		}
-
+        /// <summary>
+        /// Replace all occurrences of a pattern with a value.
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="pattern"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
 		public static string Replace( string source, string pattern, string value )
 		{
 			return new Regex( pattern ).Replace( source, value );

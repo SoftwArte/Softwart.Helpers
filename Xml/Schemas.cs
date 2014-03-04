@@ -1,22 +1,17 @@
 ﻿/************************************************
- *	Validators functions	
- *	Programmed by: Rafael Hernández							
- *	Version: 1.1 												
+ *	Xml schemas helper classes			
+ *	Programmed by: Rafael Hernández
+ *	Revision Date: 4/03/2014
+ *	Version: 1.3												
  * **********************************************/
 
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Xml.Schema;
-using System.Xml.Linq;
-using System.IO;
-using System.Xml;
-
-namespace Pluto.Tools
+namespace Softwarte.Helpers
 {
-	public class SchemaTools
+    using System.IO;
+    using System.Xml;
+    using System.Xml.Linq;
+    using System.Xml.Schema;
+	public class SchemaHelper
 	{
 		/// <summary>
 		/// Valida un fragmento Xml contra un esquema residente en un fichero.

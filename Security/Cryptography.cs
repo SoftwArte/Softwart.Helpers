@@ -1,18 +1,19 @@
 ﻿/************************************************
- *	Cryptographic functions class			
- *	Programmed by: Rafael Hernández						
- *	Version: 1.2												
+ *	Crytographic helper classes			
+ *	Programmed by: Rafael Hernández
+ *	Revision Date: 4/03/2014
+ *	Version: 1.3												
  * **********************************************/
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.IO;
-using System.Security.Cryptography;
-
-namespace Pluto.Tools
+namespace Softwarte.Helpers
 {
-	public sealed partial class Hasher
+
+    using System;
+    using System.IO;
+    using System.Security.Cryptography;
+    using System.Text;
+
+	public sealed partial class HasherHelper
 	{
 		public enum HashAlgorithm
 		{
@@ -59,39 +60,16 @@ namespace Pluto.Tools
 		}
 	}
 	/// <summary>
-	/// Esta clase contiene metodos para realizar operaciones de cifrado de cadenas y
-	/// archivos. Todos los metodos son estáticos.
+	/// Helpers class to cypher strings.
 	/// </summary>
 	/// <requirements>Ninguno</requirements>
-	public sealed partial class Crypter
+	public sealed partial class CrypterHelper
 	{
-		#region Ctors
-		private Crypter()
-		{
-		}
-		#endregion
-
-		#region Public members
 		/// <summary>
-		/// 	<para>Encripta una cadena de texto con el metodo de encriptación
-		///     <strong>DES</strong>, las claves de encriptación están embebidas en el
-		///     código.</para>
-		/// 	<para>Sólo admite cadenas en formato UTF-8.</para>
+		/// Encode a string with DES method. Key is embbeded.
 		/// </summary>
-		/// <returns>Cadena encriptada codificada en base 64.</returns>
-		/// <remarks>
-		/// 	<para>Usa una clave interna de 8 caracteres. Sólo admite cadenas en formato
-		///     UTF-8.</para>
-		/// </remarks>
-		/// <example>
-		/// 	<code lang="CS">
-		/// String MyString = Crypter.EncryptDes(stringToEncrypt);
-		/// </code>
-		/// </example>
-		/// <param name="texto">
-		/// 	<para>Cadena o texto a encriptar en formato UTF-8. Todos los caracteres fuera del
-		///     rango de UTF-8 serán trasladados a su equivalente dentro del rango.</para>
-		/// </param>
+		/// <param name="texto"></param>
+		/// <returns></returns>
 		public static string EncryptDes(string texto)
 		{
 			//DES Crypter
@@ -118,21 +96,10 @@ namespace Pluto.Tools
 			}
 		}
 		/// <summary>
-		/// 	<para>Desencripta una cadena de texto utilizando el metodo de encriptación
-		///     <strong>DES</strong>, las claves de encriptación están embebidas en el
-		///     código.</para>
-		/// 	<para>La salida es en formato UTF-8.</para>
+		/// Decode a string encoded with DES. Key is embeded.
 		/// </summary>
-		/// <returns>Cadena desencriptada en formato UTF-8.</returns>
-		/// <remarks><para>La clave interna de encriptación es de 8 caracteres fijos.</para></remarks>
-		/// <example>
-		/// 	<code lang="CS" title="[New Example]">
-		/// 	</code>
-		/// 	<code lang="CS">
-		/// String MyString = Crypter.DecryptDes(stringToDecrypt);
-		/// </code>
-		/// </example>
-		/// <param name="texto">Cadena a desencriptar.</param>
+		/// <param name="texto"></param>
+		/// <returns></returns>
 		public static string DecryptDes(string texto)
 		{
 			//Inicializa las claves utilizadas para la desencriptación. Deben ser los mismos que al 
@@ -159,18 +126,10 @@ namespace Pluto.Tools
 			}
 		}
 		/// <summary>
-		/// 	<para>Desencripta un archivo utilizando el metodo "EncryptDes".</para>
-		/// 	<para>La salida proporcionada es en formato UTF-8.</para>
+		/// Decode a entire file with DecrypDes method.
 		/// </summary>
-		/// <returns>Contenido del archivo desencriptado, en formato UTF-8.</returns>
-		/// <remarks><para>Devuelve el contenido desencriptado en formato UTF-8.</para></remarks>
-		/// <example>
-		/// 	<para></para>
-		/// 	<code lang="CS">
-		/// String MyString = Crypter.DecrypFileContent(RutaArchivo);
-		/// </code>
-		/// </example>
-		/// <param name="filepath">Full path del archivo a encriptar.</param>
+		/// <param name="filepath"></param>
+		/// <returns></returns>
 		public static string DecrypFileContent(string filepath)
 		{
 			using(var oFile = File.Open(filepath, FileMode.Open, FileAccess.Read))
@@ -178,24 +137,17 @@ namespace Pluto.Tools
 				using(var oRdr = new StreamReader(oFile))
 				{
 					string fileContent = oRdr.ReadToEnd();
-					string Resultado = Crypter.DecryptDes(fileContent);
+					string Resultado = CrypterHelper.DecryptDes(fileContent);
 					return Resultado;
 				}
 
 			}
 		}
 		/// <summary>
-		/// 	<para>Encripta el contenido de un archivo especificado y devuelve como una cadena
-		///     el resultado de la encriptación.</para>
-		/// 	<para>Sólo admite formato de texto UTF-8.</para>
+		/// Encode entire file with EncryptDes method.
 		/// </summary>
-		/// <returns>Contenido del archivo encriptado codificado en base64.</returns>
-		/// <example>
-		/// 	<code lang="CS">
-		/// String ContenidoEncriptado = Crypter.EncryptFileContent(RutaArchivo);
-		/// </code>
-		/// </example>
-		/// <param name="filepath">Ruta absoluta completa del archivo a Encriptar.</param>
+		/// <param name="filepath"></param>
+		/// <returns></returns>
 		public static string EncryptFileContent(string filepath)
 		{
 			using(var oFile = File.Open(filepath, FileMode.Open, FileAccess.Read))
@@ -203,11 +155,11 @@ namespace Pluto.Tools
 				using(var oRdr = new StreamReader(oFile))
 				{
 					string fileContent = oRdr.ReadToEnd();
-					string Resultado = Crypter.EncryptDes(fileContent);
+					string Resultado = CrypterHelper.EncryptDes(fileContent);
 					return Resultado;
 				}
 			}
 		}
-		#endregion
+
 	}
 }

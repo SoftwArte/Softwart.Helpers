@@ -1,18 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Net;
-using System.IO;
-using System.Drawing;
-using System.Threading;
-using System.Windows.Forms;
-using System.Xml.Linq;
+﻿/************************************************
+ *	Web helper classes			
+ *	Programmed by: Rafael Hernández
+ *	Revision Date: 4/03/2014
+ *	Version: 1.3												
+ * **********************************************/
 
 
-namespace Pluto.Tools
+namespace Softwarte.Helpers
 {
+	using System;
+	using System.Drawing;
+	using System.IO;
+	using System.Net;
+	using System.Text;
 	public class WebTools
 	{
 		/// <summary>

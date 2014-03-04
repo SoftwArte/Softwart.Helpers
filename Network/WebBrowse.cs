@@ -1,19 +1,14 @@
-﻿/*
-*
-*/
+﻿/************************************************
+ *	Browser helper classes			
+ *	Programmed by: Rafael Hernández
+ *	Revision Date: 4/03/2014
+ *	Version: Beta												
+ * **********************************************/
 
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using System.Xml;
-
-
-namespace Pluto.Tools
+namespace Softwarte.Helpers
 {
+	using System.Text;
+	using System.Windows.Forms;
 	public class WebBrowse
 	{
 		private static WebBrowser client;

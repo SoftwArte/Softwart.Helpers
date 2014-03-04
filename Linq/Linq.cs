@@ -1,31 +1,31 @@
 ﻿/************************************************
- *	Linq helper functions class			
- *	Programmed by: Rafael Hernández							
- *	Version: 1.1												
+ *	Linq helper classes			
+ *	Programmed by: Rafael Hernández
+ *	Revision Date: 4/03/2014
+ *	Version: 1.3												
  * **********************************************/
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
 
-namespace Pluto.Tools
+namespace Softwarte.Helpers
 {
+	using System;
+	using System.Collections.Generic;
+	using System.Linq;
+	using System.Linq.Expressions;
 	public static class LinqHelper
 	{
-		// Ayuda a construir un arbol de expresion lambda.
+		// Help to build a expression tree.
 		public static Expression<Func<T, Result>> Expr<T, Result>(Expression<Func<T, Result>> f)
 		{
 			return f;
 		}
-		// Ayuda a contruir un delegado lambda.
+		//Help to build a lambda delegate.
 		public static Func<T, Result> Func<T, Result>(Func<T, Result> f)
 		{
 			return f;
 		}
 	}
 	/// <summary>
-	/// Enables the efficient, dynamic composition of query predicates.
+	/// Enables the efficient, dynamic building of query predicates.
 	/// </summary>
 	public static class PredicateBuilder
 	{

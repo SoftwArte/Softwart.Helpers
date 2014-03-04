@@ -1,26 +1,23 @@
-﻿/*
-*
-*/
+﻿/************************************************
+ *	Compresion helper classes			
+ *	Programmed by: Rafael Hernández
+ *	Revision Date: 4/03/2014
+ *	Version: 1.3												
+ * **********************************************/
 
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using System.IO.Compression;
-using System.Linq;
-using System.Text;
-using System.Xml;
-
-
-namespace Pluto.Tools.Text
+namespace Softwarte.Helpers
 {
+    using System;
+    using System.IO;
+    using System.IO.Compression;
+    using System.Text;
     /// <summary>
-    /// Class container of compression functions.
+    /// Class of compression functions.
     /// </summary>
-    public class Compression
+    public class ZipHelper
     {
         /// <summary>
-        /// Comprime a string and return an equivalente compresed array of bytes.
+        /// Compress a string and return a compresed array of bytes.
         /// </summary>
         /// <param name="source"></param>
         /// <returns></returns>
@@ -38,7 +35,7 @@ namespace Pluto.Tools.Text
             }
         }
         /// <summary>
-        /// Decompress an array of compresed bytes and return a string.
+        /// Decompress an array of bytes and return a string.
         /// </summary>
         /// <param name="compresedSource"></param>
         /// <returns></returns>
