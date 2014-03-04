@@ -7,11 +7,11 @@
  
 namespace Softwarte.Helpers
 {
-    using System;
-    using System.IO;
-    using System.Runtime.Serialization;
-    using System.Runtime.Serialization.Formatters.Binary;
-    using System.Xml;
+	using System;
+	using System.IO;
+	using System.Runtime.Serialization;
+	using System.Runtime.Serialization.Formatters.Binary;
+	using System.Xml;
 	public static class ClonerHelper
 	{
 		/// <summary> 
@@ -21,7 +21,7 @@ namespace Softwarte.Helpers
 		/// <param name="source">The object instance to copy.</param> 
 		/// <returns>The copied object.</returns> 
 		public static T BinaryClone<T>(T source)
-            where T: class, ISerializable, new()
+			where T: class, ISerializable, new()
 		{
 			// Don't serialize a null object, simply return the default for that object 
 			if(object.ReferenceEquals(source, null))
@@ -38,16 +38,16 @@ namespace Softwarte.Helpers
 				return (T)formatter.Deserialize(stream);
 			}
 		}
-        /// <summary>
-        /// Perform a deepclone of and object with datagraph. Use DataContractSerializer and the object type must be decorated with DataContractAtrribute.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="source"></param>
-        /// <returns></returns>
+		/// <summary>
+		/// Perform a deepclone of and object with datagraph. Use DataContractSerializer and the object type must be decorated with DataContractAtrribute.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="source"></param>
+		/// <returns></returns>
 		public static T DataClone<T>(T source)
 				where T : class, new()
 		{
-            //Checks
+			//Checks
 			if(typeof(T).GetCustomAttributes(typeof(DataContractAttribute), false) == null)
 			{
 				throw new ArgumentException("The type must be decorate with DataContractAttribute.", "source");

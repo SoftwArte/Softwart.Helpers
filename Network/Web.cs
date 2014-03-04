@@ -13,7 +13,7 @@ namespace Softwarte.Helpers
 	using System.IO;
 	using System.Net;
 	using System.Text;
-	public class WebTools
+	public class WebHelper
 	{
 		/// <summary>
 		///	Download a web page as string, better support for encodings. 

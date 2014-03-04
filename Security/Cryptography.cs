@@ -63,7 +63,7 @@ namespace Softwarte.Helpers
 	/// Helpers class to cypher strings.
 	/// </summary>
 	/// <requirements>Ninguno</requirements>
-	public sealed partial class CrypterHelper
+	public sealed partial class CryptoHelper
 	{
 		/// <summary>
 		/// Encode a string with DES method. Key is embbeded.
@@ -137,7 +137,7 @@ namespace Softwarte.Helpers
 				using(var oRdr = new StreamReader(oFile))
 				{
 					string fileContent = oRdr.ReadToEnd();
-					string Resultado = CrypterHelper.DecryptDes(fileContent);
+					string Resultado = CryptoHelper.DecryptDes(fileContent);
 					return Resultado;
 				}
 
@@ -155,7 +155,7 @@ namespace Softwarte.Helpers
 				using(var oRdr = new StreamReader(oFile))
 				{
 					string fileContent = oRdr.ReadToEnd();
-					string Resultado = CrypterHelper.EncryptDes(fileContent);
+					string Resultado = CryptoHelper.EncryptDes(fileContent);
 					return Resultado;
 				}
 			}

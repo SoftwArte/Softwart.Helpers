@@ -14,7 +14,7 @@ namespace Softwarte.Helpers
 	/// <summary>
 	/// Functions to dinamically invocation of members by reflection.
 	/// </summary>
-	public class Reflector
+	public class ReflectionHelper
 	{
         /// <summary>
         /// Return a closed Func type with parameters

@@ -9,11 +9,11 @@ namespace Softwarte.Helpers
 {
 	using System.Text;
 	using System.Windows.Forms;
-	public class WebBrowse
+	public class WebBrowserHelper
 	{
 		private static WebBrowser client;
 
-		public WebBrowse()
+        public WebBrowserHelper()
 		{
 			BrowserState = BrowserPageStateEnum.Ready;
 			HttpMethod = "GET";

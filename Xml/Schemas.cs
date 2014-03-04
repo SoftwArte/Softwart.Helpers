@@ -14,49 +14,49 @@ namespace Softwarte.Helpers
 	public class SchemaHelper
 	{
 		/// <summary>
-		/// Valida un fragmento Xml contra un esquema residente en un fichero.
+		/// Validate a xml fragment against a xml schema from a file.
 		/// </summary>
 		/// <param name="value">Fragmento Xml.</param>
 		/// <param name="schemaFullPathName">Ruta absoluta completa del esquema.</param>
 		public static bool SchemaValidator(XElement value, string schemaFullPathName)
 		{
-			//Carga el esquema de validación.
+            //Load schema in a schema set.
 			XmlSchemaSet SchemaSet = new XmlSchemaSet();
 			SchemaSet.Add(null, schemaFullPathName);
 			SchemaSet.Compile();
-			//Incrusta el fragmento en un documento para validar.
+			//Create a xml document to insert the fragment.
 			XDocument TmpDoc = new XDocument();
 			TmpDoc.Add(value);
 			TmpDoc.Validate(SchemaSet, null);
 			return true;
 		}
 		/// <summary>
-		/// Valida un fragmento Xml contra un esquema como XmlSchema.
+		/// Validate a xml schema against a XmlSchema object.
 		/// </summary>
 		/// <param name="value"></param>
 		/// <param name="schema"></param>
 		/// <returns></returns>
 		public static bool SchemaValidator(XElement value, XmlSchema schema)
 		{
-			//Carga el esquema de validación.
+            //Load schema in a schema set.
 			XmlSchemaSet SchemaSet = new XmlSchemaSet();
 			SchemaSet.Add(schema);
 			SchemaSet.Compile();
-			//Incrusta el fragmento en un documento para validar.
+            //Create a xml document to insert the fragment.
 			XDocument TmpDoc = new XDocument();
 			TmpDoc.Add(value);
 			TmpDoc.Validate(SchemaSet, null);
 			return true;
 		}
 		/// <summary>
-		/// Validate an xml fragment against a xmlSchema from strings.
+		/// Validata a xml fragment against a xml schema from string.
 		/// </summary>
 		/// <param name="value"></param>
 		/// <param name="schemaDefinition"></param>
 		/// <returns></returns>
 		public static bool SchemaValidator(string value, string schemaDefinition)
 		{
-			//Prepare schema set to validate against.
+            //Load schema in a schema set.
 			XmlSchemaSet SchemaSet = new XmlSchemaSet();
 			try
 			{
@@ -67,7 +67,7 @@ namespace Softwarte.Helpers
 						var schema = XmlSchema.Read(sch, null);
 						SchemaSet.Add(schema);
 						SchemaSet.Compile();
-						//Incrusta el fragmento en un documento para validar.
+                        //Create a xml document to insert the fragment.
 						XDocument TmpDoc = new XDocument();
 						TmpDoc.Add(value);
 						TmpDoc.Validate(SchemaSet, null);
