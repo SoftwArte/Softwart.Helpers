@@ -8,8 +8,8 @@
     <ProjectGuid>{23267F0E-ADC1-4F97-8A9D-74694665E77F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Pluto.Tools</RootNamespace>
-    <AssemblyName>Pluto.Tools</AssemblyName>
+    <RootNamespace>Softwarte.Helpers</RootNamespace>
+    <AssemblyName>Softwarte.Helpers</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
@@ -48,7 +48,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>2</WarningLevel>
-    <DocumentationFile>bin\Debug\Pluto.Tools.XML</DocumentationFile>
+    <DocumentationFile>bin\Debug\Softwarte.Helpers.xml</DocumentationFile>
     <CodeAnalysisRuleSet>BasicCorrectnessRules.ruleset</CodeAnalysisRuleSet>
     <NoWarn>1591,1592,1572,1573,1711,1712</NoWarn>
     <RunCodeAnalysis>false</RunCodeAnalysis>

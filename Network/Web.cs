@@ -15,16 +15,20 @@ namespace Softwarte.Helpers
 	using System.Text;
 	public class WebHelper
 	{
+    public enum HttpMethodEnum
+    {
+      GET, POST
+    }
 		/// <summary>
 		///	Download a web page as string, better support for encodings. 
 		/// </summary>
 		/// <param name="url"></param>
 		/// <returns></returns>
-		public static string GetWebPage(string url, string httpMethod = "GET", string body = "")
+		public static string GetWebPage(string url, HttpMethodEnum httpMethod , string body = "")
 		{
 			WebClient client = new WebClient();
 			//
-			if(httpMethod == "GET")
+			if(httpMethod == HttpMethodEnum.GET)
 			{
 				//Return a page using GET.
 				return client.DownloadString(url);
