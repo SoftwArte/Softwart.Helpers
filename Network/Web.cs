@@ -13,12 +13,14 @@ namespace Softwarte.Helpers
 	using System.IO;
 	using System.Net;
 	using System.Text;
+
+  public enum HttpMethodEnum
+  {
+    GET, POST
+  }
 	public class WebHelper
 	{
-    public enum HttpMethodEnum
-    {
-      GET, POST
-    }
+    
 		/// <summary>
 		///	Download a web page as string, better support for encodings. 
 		/// </summary>
