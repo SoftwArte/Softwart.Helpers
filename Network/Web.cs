@@ -9,6 +9,7 @@
 namespace Softwarte.Helpers
 {
   using System;
+  using System.Collections.Generic;
   using System.Drawing;
   using System.IO;
   using System.Net;
@@ -18,35 +19,44 @@ namespace Softwarte.Helpers
   {
     GET, POST
   }
+
   public class WebHelper
   {
-
     /// <summary>
-    ///	Download a web page as string, better support for encodings. 
+    /// Convert a string dictionary in a WebHeaderCollection, dictionary key is the header name.
+    /// </summary>
+    /// <param name="headers"></param>
+    /// <returns></returns>
+    private static WebHeaderCollection ParseHeadersFromStrings(Dictionary<string, string> headers)
+    {
+      var headerCollection = new WebHeaderCollection();
+      foreach (var header in headers)
+      {
+        headerCollection.Add(header.Key, header.Value);
+      }
+      return headerCollection;
+    }
+    /// <summary>
+    ///	Download a web page as string using WebClient class, better support for encodings. 
     /// </summary>
     /// <param name="url"></param>
     /// <returns></returns>
-    public static string GetWebPage(string url, HttpMethodEnum httpMethod, string body = "", params string[] headers)
+    public static string GetWebPage(string url, HttpMethodEnum httpMethod, Dictionary<string, string> headers, string body = "")
     {
       WebClient client = new WebClient();
       //
       if (httpMethod == HttpMethodEnum.GET)
       {
         //Add headers is passed
-        foreach (var header in headers)
-        {
-          client.Headers.Add(header);
-        }
+        if (headers != null) client.Headers = ParseHeadersFromStrings(headers);
         //Return a page using GET.
         return client.DownloadString(url);
       }
       else
       {
         //Add headers is passed
-        foreach (var header in headers)
-        {
-          client.Headers.Add(header);
-        }
+        if (headers != null) client.Headers = ParseHeadersFromStrings(headers);
+
         //Return a page using POST. A content-type header at least in needed.
         client.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
         return Encoding.UTF8.GetString(client.UploadData(url, "POST", Encoding.UTF8.GetBytes(body)));
@@ -54,7 +64,7 @@ namespace Softwarte.Helpers
     }
 
     /// <summary>
-    /// Download a web page as stream, is neccesary read the strema to return the content as a string.
+    /// Download a web page as stream using WebRequest class, is neccesary read the strema to return the content as a string.
     /// </summary>
     /// <param name="url"></param>
     /// <returns></returns>
@@ -115,7 +125,7 @@ namespace Softwarte.Helpers
 
     }
     /// <summary>
-    /// Compound an absolute url with a base url and a url part.
+    /// Build an absolute url with a base url and a url part.
     /// </summary>
     /// <param name="baseUrl"></param>
     /// <param name="urlFragment"></param>
@@ -124,6 +134,8 @@ namespace Softwarte.Helpers
     {
       return new Uri(new Uri(baseUrl), urlFragment).ToString();
     }
+
+
   }
 
 }
