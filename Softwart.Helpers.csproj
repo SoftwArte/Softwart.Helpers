@@ -88,13 +88,16 @@
     <Compile Include="Dates.cs" />
     <Compile Include="Network\Mail.cs" />
     <Compile Include="Network\WebBrowse.cs" />
-    <Compile Include="Security\Cryptography.cs" />
+    <Compile Include="Security\Cryptographjy\Aes.cs" />
+    <Compile Include="Text\ByteHelper.cs" />
+    <Compile Include="Security\Cryptographjy\CryptoHelper.cs" />
     <Compile Include="Linq\Linq.cs" />
     <Compile Include="Network\Web.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reflection\Reflection.cs" />
     <Compile Include="RegularExpressions\RegExp.cs" />
-    <Compile Include="Text\Compression.cs" />
+    <Compile Include="Text\GZipHelper.cs" />
+    <Compile Include="Text\ZipHelper.cs" />
     <Compile Include="Xml\Schemas.cs" />
     <Compile Include="Xml\XElement.cs" />
   </ItemGroup>
