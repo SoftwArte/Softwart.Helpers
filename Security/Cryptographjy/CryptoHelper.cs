@@ -67,93 +67,36 @@ namespace Softwarte.Helpers
   public sealed partial class CryptoHelper
   {
     /// <summary>
-    /// Encode a string with DES method.
-    /// </summary>
-    /// <param name="texto"></param>
-    /// <returns></returns>
-    [Obsolete]
-    public static string EncryptDes(string texto)
-    {
-      byte[] vector = ASCIIEncoding.ASCII.GetBytes("elpluto1");
-      byte[] key = ASCIIEncoding.ASCII.GetBytes("elpluto1");
-      byte[] source = ASCIIEncoding.ASCII.GetBytes(texto);
-
-      using (var desCsp = new DESCryptoServiceProvider())
-      {
-        using (var memStream = new MemoryStream())
-        {
-          using (var cryptoStr = new CryptoStream(memStream, desCsp.CreateEncryptor(key, vector), CryptoStreamMode.Write))
-          {
-            var writer = new StreamWriter(cryptoStr);
-            writer.Write(source);
-            writer.Flush();
-            //Convert to a Base64 string.
-            var result = Convert.ToBase64String(memStream.ToArray());
-            return result;
-          }
-        }
-      }
-    }
-    /// <summary>
-    /// Decode a string encoded with DES.
-    /// </summary>
-    /// <param name="cryptedText"></param>
-    /// <returns></returns>
-    [Obsolete]
-    public static string DecryptDes(string cryptedText)
-    {
-      byte[] vector = ASCIIEncoding.ASCII.GetBytes("elpluto1");
-      byte[] key = ASCIIEncoding.ASCII.GetBytes("elpluto1");
-      //Convert base64 encrypt string to byte[] array.
-      byte[] source = Convert.FromBase64String(cryptedText);
-
-      using (var desCsp = new DESCryptoServiceProvider())
-      {
-        using (var memStream = new MemoryStream())
-        {
-          using (var cryptoStr = new CryptoStream(memStream, desCsp.CreateDecryptor(key, vector), CryptoStreamMode.Write))
-          {
-            var writer = new StreamWriter(cryptoStr);
-            writer.Write(source);
-            writer.Flush();
-            //Get the unencrypt string.
-            var result = Convert.ToString(memStream.ToArray());
-            return result;
-          }
-        }
-      }
-    }
-    /// <summary>
-    /// Decode a entire file with DecrypDes method.
+    /// Decode a entire file with AES algorithm.
     /// </summary>
     /// <param name="filepath"></param>
     /// <returns></returns>
-    public static string DecrypFileContent(string filepath)
+    public static string DecrypFileContent(string filepath, string password)
     {
       using (var oFile = File.Open(filepath, FileMode.Open, FileAccess.Read))
       {
         using (var oRdr = new StreamReader(oFile))
         {
           string fileContent = oRdr.ReadToEnd();
-          string Resultado = CryptoHelper.DecryptDes(fileContent);
+          string Resultado = CryptoHelper.DecryptStrongAes(fileContent, password);
           return Resultado;
         }
 
       }
     }
     /// <summary>
-    /// Encode entire file with EncryptDes method.
+    /// Encode entire file with Aes strong algorithm.
     /// </summary>
     /// <param name="filepath"></param>
     /// <returns></returns>
-    public static string EncryptFileContent(string filepath)
+    public static string EncryptFileContent(string filepath, string password)
     {
       using (var oFile = File.Open(filepath, FileMode.Open, FileAccess.Read))
       {
         using (var oRdr = new StreamReader(oFile))
         {
           string fileContent = oRdr.ReadToEnd();
-          string Resultado = CryptoHelper.EncryptDes(fileContent);
+          string Resultado = CryptoHelper.EncryptStrongAes(fileContent, password);
           return Resultado;
         }
       }
