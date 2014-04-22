@@ -1,7 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Softwarte.Helpers.UnitTests
+
+namespace Softwarte.Helpers
 {
   [TestClass]
   public class CryptoTest

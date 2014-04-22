@@ -53,12 +53,6 @@
     <Compile Include="CryptoTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Softwart.Helpers.csproj">
-      <Project>{23267f0e-adc1-4f97-8a9d-74694665e77f}</Project>
-      <Name>Softwart.Helpers</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
