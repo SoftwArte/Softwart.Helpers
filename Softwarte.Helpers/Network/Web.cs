@@ -37,11 +37,11 @@ namespace Softwarte.Helpers
       return headerCollection;
     }
     /// <summary>
-    ///	Download a web page as string using WebClient class, better support for encodings. 
+    ///	Download a web page as string using WebClient class, better support for encodings. Support methods GET and POST, configure http headers, and request body.
     /// </summary>
     /// <param name="url"></param>
     /// <returns></returns>
-    public static string GetWebPage(string url, HttpMethodEnum httpMethod, Dictionary<string, string> headers, string body = "")
+    public static string GetWebPage(string url, HttpMethodEnum httpMethod = HttpMethodEnum.GET, Dictionary<string, string> headers = null, string body = "")
     {
       WebClient client = new WebClient();
       //
