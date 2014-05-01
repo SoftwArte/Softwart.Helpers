@@ -62,7 +62,10 @@ namespace Softwarte.Helpers
         return Encoding.UTF8.GetString(client.UploadData(url, "POST", Encoding.UTF8.GetBytes(body)));
       }
     }
-
+    public static string GetWebPage(string url, string httpMethod, string body = "")
+    {
+      return GetWebPage(url, (HttpMethodEnum)Enum.Parse(typeof(HttpMethodEnum), httpMethod), null);
+    }
     /// <summary>
     /// Download a web page as stream using WebRequest class, is neccesary read the strema to return the content as a string.
     /// </summary>
